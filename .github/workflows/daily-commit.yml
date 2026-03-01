@@ -2,8 +2,11 @@ name: Daily Auto Commit
 
 on:
   schedule:
-    - cron: '15 2 * * *'   # Runs daily at 02:15 UTC
+    - cron: '15 2 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write   
 
 jobs:
   commit-job:
@@ -12,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: 23f3003477@ds.study.iitm.ac.in - Create daily update
         run: |
